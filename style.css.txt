@@ -1,0 +1,38 @@
+/* style.css */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f4f0;
+  color: #333;
+}
+header {
+  background: #a0522d;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+}
+.intro {
+  text-align: center;
+  padding: 2rem;
+}
+.intro img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.contact {
+  background: #f3e8e0;
+  padding: 2rem;
+  text-align: center;
+}
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+a {
+  color: #a0522d;
+  text-decoration: none;
+}
