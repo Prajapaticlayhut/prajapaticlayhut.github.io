@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Brijesh — Modern Name Card</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #0f172a;
+      --bg-2: #071033;
+      --glass: rgba(255,255,255,0.06);
+      --accent-a: #7c3aed; /* purple */
+      --accent-b: #06b6d4; /* teal */
+      --text: #e6eef8;
+      --muted: rgba(230,238,248,0.6);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent 6%),
+                  radial-gradient(1000px 500px at 90% 90%, rgba(6,182,212,0.08), transparent 8%),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+    }
+
+    .card{
+      width:100%;
+      max-width:920px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:18px;
+      padding:36px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px) saturate(120%);
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:28px;
+      align-items:center;
+    }
+
+    .hero {
+      padding: 8px 4px;
+    }
+
+    .name {
+      font-size: clamp(40px, 6vw, 72px);
+      line-height:0.9;
+      margin:0 0 10px 0;
+      font-weight:800;
+      letter-spacing:-1px;
+      background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display:inline-block;
+      transform-origin:center;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .subtitle {
+      color:var(--muted);
+      margin:6px 0 18px 0;
+      font-weight:500;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:12px;
+      font-weight:600;
+      cursor:pointer;
+      border: none;
+      text-decoration:none;
+      color:var(--bg-2);
+      background: linear-gradient(90deg,var(--accent-b),var(--accent-a));
+      box-shadow: 0 6px 18px rgba(12,10,44,0.45);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn.secondary{
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: none;
+    }
+    .btn:hover{ transform: translateY(-4px); box-shadow: 0 10px 30px rgba(12,10,44,0.55); }
+    .btn.secondary:hover{ transform: translateY(-2px); }
+
+    /* right card */
+    .card-right{
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border-radius:12px;
+      padding:18px;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      justify-content:center;
+      align-items:flex-start;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .meta {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      width:100%;
+      justify-content:space-between;
+    }
+
+    .chip{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      background:var(--glass);
+      color:var(--text);
+      font-weight:600;
+      font-size:13px;
+      border:1px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(6px);
+    }
+
+    .avatar{
+      width:64px;
+      height:64px;
+      border-radius:14px;
+      background: linear-gradient(135deg,var(--accent-a),var(--accent-b));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:20px;
+      color:white;
+      box-shadow: 0 6px 18px rgba(124,58,237,0.12);
+    }
+
+    .info-list{ width:100%; margin-top:6px; display:flex; gap:8px; flex-direction:column; }
+    .info-item{ display:flex; justify-content:space-between; width:100%; font-size:14px; color:var(--muted); padding:8px; border-radius:10px; }
+    .info-item strong{ color:var(--text); font-weight:700; }
+
+    footer.small{ font-size:12px; color:rgba(230,238,248,0.45); margin-top:14px }
+
+    /* responsive */
+    @media (max-width:880px){
+      .card{ grid-template-columns: 1fr; padding:24px; }
+      .card-right{ align-items:center }
+      .meta{ flex-direction:row; gap:10px; justify-content:flex-start }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="title">
+    <section class="hero">
+      <h1 id="title" class="name">brijesh</h1>
+      <p class="subtitle">Creative • Builder • Clay & Craft Enthusiast</p>
+
+      <div class="actions" aria-label="actions">
+        <a class="btn" href="#" onclick="sayHi(event)">Say hi 👋</a>
+        <a class="btn secondary" href="#" onclick="copyName(event)">Copy name</a>
+      </div>
+
+      <p class="small" style="margin-top:18px; color:var(--muted)">
+        A simple modern name card that you can customize. Feel free to change the subtitle or style.
+      </p>
+    </section>
+
+    <aside class="card-right" aria-label="profile">
+      <div class="meta">
+        <div style="display:flex; gap:12px; align-items:center;">
+          <div class="avatar" aria-hidden="true">B</div>
+          <div>
+            <div style="font-weight:800; font-size:16px">brijesh</div>
+            <div style="color:var(--muted); font-size:13px">Instagram: @yourhandle</div>
+          </div>
+        </div>
+
+        <div class="chip">Connected</div>
+      </div>
+
+      <div class="info-list" aria-hidden="true">
+        <div class="info-item"><span>Posts</span><strong>128</strong></div>
+        <div class="info-item"><span>Followers</span><strong>12.4k</strong></div>
+        <div class="info-item"><span>Engagement</span><strong>4.2%</strong></div>
+      </div>
+
+      <footer class="small">Made with care • Modern UI sample</footer>
+    </aside>
+  </main>
+
+  <script>
+    function sayHi(e){
+      e.preventDefault();
+      alert('Hi brijesh 👋 — this is your modern name card.');
+    }
+    function copyName(e){
+      e.preventDefault();
+      navigator.clipboard?.writeText('brijesh').then(()=> {
+        alert('Name copied to clipboard ✔');
+      }).catch(()=> alert('Unable to copy'));
+    }
+  </script>
+</body>
+</html>
